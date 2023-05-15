@@ -1,0 +1,25 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Azure_iOS_ExampleTest" type="JUnit" factoryName="JUnit">
+    <module name="appium-junit" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="org.fw.testcases.BrowserStackExampleTest" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="azul-11" />
+    <option name="PACKAGE_NAME" value="org.fw.testcases" />
+    <option name="MAIN_CLASS_NAME" value="org.fw.testcases.ExampleTest" />
+    <option name="METHOD_NAME" value="" />
+    <option name="TEST_OBJECT" value="class" />
+    <option name="VM_PARAMETERS" value="-ea -DpropertiesFiles=ios.local.properties" />
+    <envs>
+      <env name="APP_CENTER_TEST" value="1" />
+      <env name="PROPERTIES_FILES" value="ios.azure.properties" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
