@@ -11,6 +11,8 @@ import java.util.Properties;
 
 public class PropertyUtils {
 
+    private static final Properties PROPERTIES_FILES = PropertyUtils.loadPropertiesFiles(getPropertiesFiles());
+
     public static Properties loadPropertiesFiles(String propertiesFiles) {
         Properties properties = new Properties();
         String userDir = PropertyUtils.getProperty("user.dir");
@@ -21,16 +23,8 @@ public class PropertyUtils {
             propertiesFileName = propertiesFileName.trim();
 
             try {
-                if (System.getenv("APP_CENTER_TEST") == null) {
-                    inputStream = Files.newInputStream(Paths.get(userDir + "/src/test/resources/configuration-profiles/" + propertiesFileName));
-                    properties.load(inputStream);
-                } else if (System.getenv("APP_CENTER_TEST").equals("1")) {
-                    inputStream = Files.newInputStream(Paths.get(userDir + "/test-classes/configuration-profiles/" + System.getenv("PROPERTIES_FILES")));
-                    properties.load(inputStream);
-                } else {
-                    inputStream = Files.newInputStream(Paths.get(userDir + "/src/test/resources/configuration-profiles/" + propertiesFileName));
-                    properties.load(inputStream);
-                }
+                inputStream = Files.newInputStream(Paths.get(userDir + "/src/test/resources/configuration-profiles/" + propertiesFileName));
+                properties.load(inputStream);
 
             } catch (Exception exception) {
                 LoggingManager.logError(PropertyUtils.class, "Unable to load Property Files", exception);
@@ -85,14 +79,10 @@ public class PropertyUtils {
     }
 
     public static Platform getPlatform() {
-        return Platform.getPlatform(getProperty(Constants.PLATFORM_NAME));
-    }    private static final Properties PROPERTIES_FILES = PropertyUtils.loadPropertiesFiles(getPropertiesFiles());
+        return Platform.getPlatform(getProperty(Constants.PLATFORM_NAME_KEY));
+    }
 
     public static Boolean isPlatform(Platform platformExpected) {
         return getPlatform().equals(platformExpected);
     }
-
-
-
-
 }
